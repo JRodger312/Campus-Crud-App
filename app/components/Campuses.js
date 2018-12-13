@@ -22,6 +22,10 @@ class Campuses extends Component{
         let campusList = this.props.campuses.campuses   
         return (
             <div>
+            <div>
+            <h2>There are {campusList.length} Campuses</h2>
+            </div>
+            <div>
         <ul>
             {campusList.map(campus => 
                 <div>
@@ -33,6 +37,7 @@ class Campuses extends Component{
                 </div>
             )}
         </ul>
+         </div>
          </div>
         )
     }

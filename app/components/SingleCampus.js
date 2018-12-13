@@ -22,6 +22,7 @@ class SingleCampus extends Component{
             </div>
             <div>
                 <h2>Students</h2>
+                <p>There are {filteredStudents.length} in this campus</p>
                 <ul>
                     {filteredStudents.map(student => 
                         <div>

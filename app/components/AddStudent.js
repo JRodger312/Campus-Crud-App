@@ -6,7 +6,17 @@ import {addStudent,addStudentThunk, getStudentsThunk} from '../reducers/studentR
 class AddStudent extends Component{
     constructor(){
         super()
+        this.state = {
+            selectedCampus:0
+        }
         this.handleSubmit= this.handleSubmit.bind(this)
+        this.handleChange= this.handleChange.bind(this)
+    }
+    handleChange(event){
+        const studentCampus = event.target.value;
+        this.setState({
+            selectedCampus:studentCampus
+        })
     }
 
     async handleSubmit(event){
@@ -19,7 +29,8 @@ class AddStudent extends Component{
             firstName:studentFirstName,
             lastName:studentLastName,
             email:studentEmail,
-            gpa:studentGPA
+            gpa:studentGPA,
+            campusId:this.state.selectedCampus
         }
         console.log(newStudent);
         this.props.writeStudent(newStudent)
@@ -28,6 +39,8 @@ class AddStudent extends Component{
     }
 
     render(){
+        const campusList = this.props.campuses.campuses;
+        console.log(campusList);
         return (
             <div>
             <h1>ADD STUDENT</h1>
@@ -48,10 +61,24 @@ class AddStudent extends Component{
                 <label htmlFor="gpa">GPA</label>
                 <input type="text" name="gpa"></input>
                 </div>
+                <div>
+                <p>Campus</p>
+                <select onClick = {this.handleChange}>
+                    {campusList.map(campus =>               
+                    <option name="campusId" value={campus.id}>{campus.name}</option>
+                )}
+                </select>
+                </div>
                 <input type="submit" name="submit" value="add student"></input>
             </form>
             </div>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        campuses : state.campuses
     }
 }
 
@@ -62,4 +89,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
   
-export default connect(null,mapDispatchToProps)(AddStudent);
+export default connect(mapStateToProps,mapDispatchToProps)(AddStudent);

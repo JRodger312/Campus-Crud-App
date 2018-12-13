@@ -23,7 +23,7 @@ class Root extends Component{
       <nav>
         Welcome!{'           '}
         <div>
-            <NavLink to='/' className ='navLink' style = 'color:orange'>{'     '}Home</NavLink>{'  '}
+            <NavLink to='/' className ='navLink'>{'     '}Home</NavLink>{'  '}
             <NavLink to='/campuses' className ='navLink'>All Campuses</NavLink>{'  '}
             <NavLink to='/students' className ='navLink'>All Students</NavLink>{'  '}
             <NavLink to='/addcampus' className ='navLink'>Add Campus</NavLink>{'  '}

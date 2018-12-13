@@ -18,6 +18,8 @@ class Students extends Component {
         let studentList = this.props.students.students
         console.log(studentList)
         return(
+            <div>
+                <h2>There are {studentList.length} students</h2>
             <ul>
         {studentList.map(student =>
             <div>
@@ -27,6 +29,7 @@ class Students extends Component {
             </div>
         )}
             </ul>
+            </div>
             
         )
     }
