@@ -30,7 +30,7 @@ class Campuses extends Component{
             {campusList.map(campus => 
                 <div>
                 <li key = {campus.name}><a href = {`http://localhost:1337/#/campuses/${campus.id}`} >{campus.name}</a></li>
-                <li><img key = {campus.address} src = {campus.imageUrl} /></li>
+                <img key = {campus.address} src = {campus.imageUrl} />
                 <li>{campus.address}</li>
                 <button type="submit" name="remove" value={campus.id} onClick={this.handleSubmit}>x</button>
                 <hr/>

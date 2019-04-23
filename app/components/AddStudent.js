@@ -7,7 +7,7 @@ class AddStudent extends Component{
     constructor(){
         super()
         this.state = {
-            selectedCampus:0
+            selectedCampus:null
         }
         this.handleSubmit= this.handleSubmit.bind(this)
         this.handleChange= this.handleChange.bind(this)
@@ -15,6 +15,7 @@ class AddStudent extends Component{
     handleChange(event){
         const studentCampus = event.target.value;
         this.setState({
+            ...state,
             selectedCampus:studentCampus
         })
     }
@@ -25,15 +26,24 @@ class AddStudent extends Component{
         const studentLastName = event.target.lastName.value;
         const studentEmail = event.target.email.value;
         const studentGPA = event.target.gpa.value;
-        const newStudent = {
+        const newStudentWithoutCampus = {
+            firstName:studentFirstName,
+            lastName:studentLastName,
+            email:studentEmail,
+            gpa:studentGPA,
+        }
+        const newStudentWithCampus = {
             firstName:studentFirstName,
             lastName:studentLastName,
             email:studentEmail,
             gpa:studentGPA,
             campusId:this.state.selectedCampus
         }
-        console.log(newStudent);
-        this.props.writeStudent(newStudent)
+        if(this.state.selectedCampus !== null){
+            this.props.writeStudent(newStudentWithCampus)
+        }else{
+            this.props.writeStudent(newStudentWithoutCampus)
+        }
         this.props.history.push('/students')
         
     }
@@ -64,6 +74,7 @@ class AddStudent extends Component{
                 <div>
                 <p>Campus</p>
                 <select onClick = {this.handleChange}>
+                    <option>none</option>
                     {campusList.map(campus =>               
                     <option name="campusId" value={campus.id}>{campus.name}</option>
                 )}
